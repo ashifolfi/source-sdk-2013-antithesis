@@ -90,6 +90,8 @@ sp/src/materialsystem/*.pdb
 sp/src/vgui2/*.dll
 sp/src/vgui2/*.pdb
 sp/game/bin/*
+sp/game/mod_*/bin/*.dll
+sp/game/mod_*/bin/*.pdb
 
 .vs/
 
