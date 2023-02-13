@@ -1,76 +1,40 @@
 "Resource/HudLayout.res"
 {
-	HudHealth [$WIN32]
+	HudHealthBar
 	{
-		"fieldName"		"HudHealth"
+		"fieldName" "HudHealthbar"
+		"visible" "1"
+		"enabled" "1"
 		"xpos"	"16"
 		"ypos"	"432"
-		"wide"	"102"
-		"tall"  "36"
-		"visible" "1"
-		"enabled" "1"
-
-		"PaintBackgroundType"	"2"
-		
-		"text_xpos" "8"
-		"text_ypos" "20"
-		"digit_xpos" "50"
-		"digit_ypos" "2"
-	}
-	HudHealth [$X360]
-	{
-		"fieldName"		"HudHealth"
-		"xpos"	"48"
-		"ypos"	"416"
-		"wide"	"115"
-		"tall"  "36"
-		"visible" "1"
-		"enabled" "1"
-
-		"PaintBackgroundType"	"2"
-		
-		"text_xpos" "8"
-		"text_ypos" "18"
-		"digit_xpos" "60"
-		"digit_ypos" "-1"
+		"wide" "300"
+		"tall" "36"
+		"text_xpos" "5"
+		"text_ypos" "2"
+		"TextColor" "0 255 0 80"
+		"PaintBackgroundType" "0"
 	}
 	
-	HudSuit [$WIN32]
+	HudSuit
 	{
 		"fieldName"		"HudSuit"
-		"xpos"	"140"
-		"ypos"	"432"
+		"xpos"	"16"
+		"ypos"	"396"
 		"wide"	"108"
 		"tall"  "36"
 		"visible" "1"
 		"enabled" "1"
 
-		"PaintBackgroundType"	"2"
+		"PaintBackgroundType" "0"
 
+		
 		"text_xpos" "8"
 		"text_ypos" "20"
 		"digit_xpos" "50"
 		"digit_ypos" "2"
 	}
-	HudSuit [$X360]
-	{
-		"fieldName"		"HudSuit"
-		"xpos"	"176"
-		"ypos"	"416"
-		"wide"	"117"
-		"tall"  "36"
-		"visible" "1"
-		"enabled" "1"
 
-		"PaintBackgroundType"	"2"
-
-		"text_xpos" "8"
-		"text_ypos" "18"
-		"digit_xpos" "50"
-		"digit_ypos" "-1"
-	}
-
-	HudAmmo	[$WIN32]
+	HudAmmo
 	{
 		"fieldName" "HudAmmo"
 		"xpos"	"r150"
@@ -80,7 +44,7 @@
 		"visible" "1"
 		"enabled" "1"
 
-		"PaintBackgroundType"	"2"
+		"PaintBackgroundType" "0"
 
 		"text_xpos" "8"
 		"text_ypos" "20"
@@ -89,27 +53,8 @@
 		"digit2_xpos" "98"
 		"digit2_ypos" "16"
 	}
-	HudAmmo	[$X360]
-	{
-		"fieldName" "HudAmmo"
-		"xpos"	"r208"
-		"ypos"	"416"
-		"wide"	"160"
-		"tall"  "36"
-		"visible" "1"
-		"enabled" "1"
 
-		"PaintBackgroundType"	"2"
-
-		"text_xpos" "8"
-		"text_ypos" "18"
-		"digit_xpos" "60"
-		"digit_ypos" "-1"
-		"digit2_xpos" "120"
-		"digit2_ypos" "14"
-	}
-
-	HudAmmoSecondary	[$WIN32]
+	HudAmmoSecondary
 	{
 		"fieldName" "HudAmmoSecondary"
 		"xpos"	"r76"
@@ -119,29 +64,12 @@
 		"visible" "1"
 		"enabled" "1"
 
-		"PaintBackgroundType"	"2"
+		"PaintBackgroundType"	"0"
 
 		"text_xpos" "8"
 		"text_ypos" "22"
 		"digit_xpos" "36"
 		"digit_ypos" "2"
-	}
-	HudAmmoSecondary	[$X360]
-	{
-		"fieldName" "HudAmmoSecondary"
-		"xpos"	"r113"
-		"ypos"	"416"
-		"wide"	"65"
-		"tall"  "36"
-		"visible" "1"
-		"enabled" "1"
-
-		"PaintBackgroundType"	"2"
-
-		"text_xpos" "8"
-		"text_ypos" "22"
-		"digit_xpos" "36"
-		"digit_ypos" "-1"
 	}
 
 	HudPosture	[$WIN32]

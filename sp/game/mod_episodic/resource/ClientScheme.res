@@ -11,10 +11,25 @@
 Scheme
 {
 	//////////////////////// COLORS ///////////////////////////
-	// color details
-	// this is a list of all the colors used by the scheme
 	Colors
 	{
+		// base colors
+		"Orange"			"255 0 38 255"
+		"OrangeDim"			"255 0 38 120"
+		"LightOrange"		"255 125 144 128"
+		
+		// old red
+		//"Red"				"192 28 0 140"
+		"Red"				"240 16 0 140"
+		"Black"				"0 0 0 255"
+		"TransparentBlack"	"0 0 0 196"
+		"TransparentLightBlack"	"0 0 0 90"
+		"White"					"255 255 255 255"
+
+		"Blank"				"0 0 0 0"
+		"ForTesting"		"255 0 0 32"
+		"ForTesting_Magenta"	"255 0 255 255"
+		"ForTesting_MagentaDim"	"255 0 255 120"
 	}
 	
 	///////////////////// BASE SETTINGS ////////////////////////
@@ -23,13 +38,13 @@ Scheme
 	// controls use these to determine their settings
 	BaseSettings
 	{
-		"FgColor"			"255 220 0 100"
-		"BgColor"			"0 0 0 76"
+		"FgColor"			"255 0 38 100"
+		"BgColor"			"0 0 0 255"
 
-		"Panel.FgColor"			"255 220 0 100"
-		"Panel.BgColor"			"0 0 0 76"
+		"Panel.FgColor"			"255 0 38 100"
+		"Panel.BgColor"			"0 0 0 255"
 		
-		"BrightFg"		"255 220 0 255"
+		"BrightFg"		"255 0 38 255"
 
 		"DamagedBg"			"180 0 0 200"
 		"DamagedFg"			"180 0 0 230"
@@ -50,21 +65,210 @@ Scheme
 		"Caution"			"255 48 0 255"
 
 		// Top-left corner of the "Half-Life 2" on the main screen
-		"Main.Title1.X"				"76"
-		"Main.Title1.Y"				"145"
-		"Main.Title1.Y_hidef"		"130"
+		"Main.Title1.X"		"76"
+		"Main.Title1.Y"		"184"
 		"Main.Title1.Color"	"255 255 255 255"
-
-		// Top-left corner of secondary title e.g. "DEMO" on the main screen
-		"Main.Title2.X"				"76"
-		"Main.Title2.Y"				"190"
-		"Main.Title2.Y_hidef"		"174"
-		"Main.Title2.Color"	"255 255 255 200"
+		
+		// Top-left corner of the "DEATHMATCH" on the main screen
+		"Main.Title2.X"		"315"
+		"Main.Title2.Y"		"222"
+		"Main.Title2.Color"	"255 255 255 255"
 
 		// Top-left corner of the menu on the main screen
-		"Main.Menu.X"			"53"
-		"Main.Menu.X_hidef"		"76"
-		"Main.Menu.Y"			"240"
+		"Main.Menu.X"		"76"
+		"Main.Menu.Y"		"240"
+
+		// Blank space to leave beneath the menu on the main screen
+		"Main.BottomBorder"	"32"
+
+
+///HERE
+				// vgui_controls color specifications
+		Border.Bright					"LightOrange"		// the lit side of a control
+		Border.Dark						"LightOrange"		// the dark/unlit side of a control
+		Border.Selection				"Blank"				// the additional border color for displaying the default/selected button
+
+		Button.TextColor				"White"
+		Button.BgColor					"Blank"
+		Button.ArmedTextColor			"Orange"
+		Button.ArmedBgColor				"Red"
+		Button.DepressedTextColor		"Orange"
+		Button.DepressedBgColor			"Red"
+
+		CheckButton.TextColor			"White"
+		CheckButton.SelectedTextColor	"Orange"
+		CheckButton.BgColor				"TransparentBlack"
+		CheckButton.Border1  			"Border.Dark" 		// the left checkbutton border
+		CheckButton.Border2  			"Border.Bright"		// the right checkbutton border
+		CheckButton.Check				"Orange"				// color of the check itself
+
+		ComboBoxButton.ArrowColor		"White"
+		ComboBoxButton.ArmedArrowColor	"White"
+		ComboBoxButton.BgColor			"TransparentBlack"
+		ComboBoxButton.DisabledBgColor	"Blank"
+
+		Frame.BgColor					"Black"
+		Frame.OutOfFocusBgColor			"Black"
+		Frame.FocusTransitionEffectTime	"0.0"	// time it takes for a window to fade in/out on focus/out of focus
+		Frame.TransitionEffectTime		"0.0"	// time it takes for a window to fade in/out on open/close
+		Frame.AutoSnapRange				"0"
+		FrameGrip.Color1				"Blank"
+		FrameGrip.Color2				"Blank"
+		FrameTitleButton.FgColor		"Blank"
+		FrameTitleButton.BgColor		"Blank"
+		FrameTitleButton.DisabledFgColor	"Blank"
+		FrameTitleButton.DisabledBgColor	"Blank"
+		FrameSystemButton.FgColor		"Blank"
+		FrameSystemButton.BgColor		"Blank"
+		FrameSystemButton.Icon			""
+		FrameSystemButton.DisabledIcon	""
+		FrameTitleBar.TextColor			"White"
+		FrameTitleBar.BgColor			"Blank"
+		FrameTitleBar.DisabledTextColor	"Orange"
+		FrameTitleBar.DisabledBgColor	"Blank"
+
+		GraphPanel.FgColor				"Orange"
+		GraphPanel.BgColor				"Black"
+
+		Label.TextDullColor				"White"
+		Label.TextColor					"White"
+		Label.TextBrightColor			"White"
+		Label.SelectedTextColor			"Orange"
+		Label.BgColor					"Blank"
+		Label.DisabledFgColor1			"Blank"
+		Label.DisabledFgColor2			"LightOrange"
+
+		ListPanel.TextColor					"White"
+		ListPanel.BgColor					"Black"
+		ListPanel.SelectedTextColor			"Black"
+		ListPanel.SelectedBgColor			"Red"
+		ListPanel.SelectedOutOfFocusBgColor	"Red"
+		ListPanel.EmptyListInfoTextColor	"Orange"
+
+		Menu.TextColor					"White"
+		Menu.BgColor					"Black"
+		Menu.ArmedTextColor				"Orange"
+		Menu.ArmedBgColor				"Red"
+		Menu.TextInset					"6"
+
+		Chat.TypingText					"Orange"
+
+		Panel.FgColor					"OrangeDim"
+		Panel.BgColor					"blank"
+
+		ProgressBar.FgColor				"Orange"
+		ProgressBar.BgColor				"Black"
+
+		PropertySheet.TextColor			"Orange"
+		PropertySheet.SelectedTextColor	"Orange"
+		PropertySheet.TransitionEffectTime	"0.25"	// time to change from one tab to another
+
+		RadioButton.TextColor			"Orange"
+		RadioButton.SelectedTextColor	"Orange"
+
+		RichText.TextColor				"White"
+		RichText.BgColor				"Blank"
+		RichText.SelectedTextColor		"Orange"
+		RichText.SelectedBgColor		"Blank"
+
+				ScrollBarButton.FgColor				"Orange"
+		ScrollBarButton.BgColor				"Blank"
+		ScrollBarButton.ArmedFgColor		"Orange"
+		ScrollBarButton.ArmedBgColor		"Blank"
+		ScrollBarButton.DepressedFgColor	"Orange"
+		ScrollBarButton.DepressedBgColor	"Blank"
+
+		ScrollBarSlider.FgColor				"Blank"		// nob color
+		ScrollBarSlider.BgColor				"Blank"		// slider background color
+
+		SectionedListPanel.HeaderTextColor	"Orange"
+		SectionedListPanel.HeaderBgColor	"Blank"
+		SectionedListPanel.DividerColor		"Black"
+		SectionedListPanel.TextColor		"White"
+		SectionedListPanel.BrightTextColor	"Orange"
+		SectionedListPanel.BgColor			"TransparentLightBlack"
+		SectionedListPanel.SelectedTextColor			"Black"
+		SectionedListPanel.SelectedBgColor				"Red"
+		SectionedListPanel.OutOfFocusSelectedTextColor	"Black"
+		SectionedListPanel.OutOfFocusSelectedBgColor	"255 255 255 32"
+
+		Slider.NobColor				"108 108 108 255"
+		Slider.TextColor			"White"
+		Slider.TrackColor			"31 31 31 255"
+		Slider.DisabledTextColor1	"117 117 117 255"
+		Slider.DisabledTextColor2	"30 30 30 255"
+
+		TextEntry.TextColor			"White"
+		TextEntry.BgColor			"TransparentBlack"
+		TextEntry.CursorColor		"Orange"
+		TextEntry.DisabledTextColor	"Orange"
+		TextEntry.DisabledBgColor	"Blank"
+		TextEntry.SelectedTextColor	"Black"
+		TextEntry.SelectedBgColor	"Red"
+		TextEntry.OutOfFocusSelectedBgColor	"Red"
+		TextEntry.FocusEdgeColor	"TransparentBlack"
+
+		ToggleButton.SelectedTextColor	"Orange"
+
+		Tooltip.TextColor			"TransparentBlack"
+		Tooltip.BgColor				"Red"
+
+		TreeView.BgColor			"TransparentBlack"
+
+		WizardSubPanel.BgColor		"Blank"
+
+		// scheme-specific colors
+		"FgColor"		"Orange"
+		"BgColor"		"Black"
+
+		"ViewportBG"		"Blank"
+		"team0"			"204 204 204 255" // Spectators
+		"team1"			"255 64 64 255" // CT's
+		"team2"			"153 204 255 255" // T's
+
+		"MapDescriptionText"	"Orange" // the text used in the map description window
+		"CT_Blue"			"153 204 255 255"
+		"T_Red"				"255 64 64 255"
+		"Hostage_Yellow"	"Panel.FgColor"
+		"HudIcon_Green"		"0 160 0 255"
+		"HudIcon_Red"		"160 0 0 255"
+
+		// CHudMenu
+		"ItemColor"		"255 167 42 200"	// default 255 167 42 255
+		"MenuColor"		"233 208 173 255"
+		"MenuBoxBg"		"0 0 0 100"
+
+		// weapon selection colors
+		"SelectionNumberFg"		"255 220 0 200"
+		"SelectionTextFg"		"255 220 0 200"
+		"SelectionEmptyBoxBg" 	"0 0 0 80"
+		"SelectionBoxBg" 		"0 0 0 80"
+		"SelectionSelectedBoxBg" "0 0 0 190"
+
+		// Hint message colors
+		"HintMessageFg"			"255 255 255 255"
+		"HintMessageBg" 		"0 0 0 60"
+
+		"ProgressBarFg"			"255 30 13 255"
+
+		// Top-left corner of the "Counter-Strike" on the main screen
+		"Main.Title1.X"		"32"
+		"Main.Title1.Y"		"180"
+		"Main.Title1.Color"	"255 255 255 255"
+
+		// Top-left corner of the "SOURCE" on the main screen
+		"Main.Title2.X"		"380"	
+		"Main.Title2.Y"		"205"
+		"Main.Title2.Color"	"255 255 255 80"
+
+		// Top-left corner of the "BETA" on the main screen
+		"Main.Title3.X"		"460"
+		"Main.Title3.Y"		"-10"
+		"Main.Title3.Color"	"255 255 0 255"
+
+		// Top-left corner of the menu on the main screen
+		"Main.Menu.X"		"32"
+		"Main.Menu.Y"		"248"
 
 		// Blank space to leave beneath the menu on the main screen
 		"Main.BottomBorder"	"32"

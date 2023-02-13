@@ -1,9 +1,8 @@
 "GameInfo"
 {
-	game 		"My First Episodic Mod"
-	title 		"HALF-LIFE'"
-	title2		""
-	supportsvr	1
+	game 		"Scarlet's Antithesis"
+	title ""
+	supportsvr	0
 
 	type		singleplayer_only
 
@@ -37,7 +36,6 @@
 			// folder.
 			//
 			// Note that this folder is scanned only when the game is booted.
-			game+mod			ep2/custom/*
 			game+mod			episodic/custom/*
 			game+mod			hl2/custom/*
 
@@ -52,10 +50,12 @@
 			// in folders where they don't exist.  (Searching a VPK is much faster than making an operating
 			// system call.)
 			game_lv				hl2/hl2_lv.vpk
-			game+mod			ep2/ep2_english.vpk
+			// for the "demo" background map
+			game+mod			|all_source_engine_paths|lostcoast/lostcoast_pak.vpk
+			game+mod			|all_source_engine_paths|sourcetest/sourcetest_pak.vpk
 			game+mod			ep2/ep2_pak.vpk
-			game				|all_source_engine_paths|episodic/ep1_english.vpk
-			game				|all_source_engine_paths|episodic/ep1_pak.vpk
+			game+mod			episodic/ep1_sound_vo_english.vpk
+			game+mod			episodic/ep1_pak.vpk
 			game				|all_source_engine_paths|hl2/hl2_english.vpk
 			game				|all_source_engine_paths|hl2/hl2_pak.vpk
 			game				|all_source_engine_paths|hl2/hl2_textures.vpk
@@ -66,13 +66,11 @@
 
 			// Add the HL2 directory as a game search path.  This is also where where writes
 			// to the "game" path go.
-			game+game_write		ep2
+			game+game_write		episodic
 
 			// Where the game's binaries are
 			gamebin				episodic/bin
 
-			// Last, mount in shared HL2 loose files
-			game				|all_source_engine_paths|episodic
 			game				|all_source_engine_paths|hl2
 			platform			|all_source_engine_paths|platform
 		}
