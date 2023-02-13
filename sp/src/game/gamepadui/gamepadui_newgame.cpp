@@ -58,7 +58,7 @@ public:
 
     void OnMouseWheeled( int delta ) OVERRIDE;
 
-    void StartGame( int nChapter );
+	void StartGame( char const* pCommand );
 
 private:
     CUtlVector< GamepadUIChapterButton* > m_pChapterButtons;
@@ -176,34 +176,21 @@ static int __cdecl ChapterSortFunc( const void *elem1, const void *elem2 )
 static int FindChapters( chapter_t *pChapters )
 {
     int chapterIndex = 0;
-    char szFullFileName[MAX_PATH];
 
-    FileFindHandle_t findHandle = FILESYSTEM_INVALID_FIND_HANDLE;
-    const char *fileName = "cfg/chapter*.cfg";
-    fileName = g_pFullFileSystem->FindFirst( fileName, &findHandle );
-    while ( fileName && chapterIndex < MAX_CHAPTERS )
-    {
-        if ( fileName[0] )
-        {
-            // Only load chapter configs from the current mod's cfg dir
-            // or else chapters appear that we don't want!
-            Q_snprintf( szFullFileName, sizeof( szFullFileName ), "cfg/%s", fileName );
-            FileHandle_t f = g_pFullFileSystem->Open( szFullFileName, "rb", "MOD" );
-            if ( f )
-            {
-                // don't load chapter files that are empty, used in the demo
-                if ( g_pFullFileSystem->Size( f ) > 0	 )
-                {
-                    Q_strncpy( pChapters[chapterIndex].filename, fileName, sizeof( pChapters[chapterIndex].filename ) );
-                    ++chapterIndex;
-                }
-                g_pFullFileSystem->Close( f );
-            }
-        }
-        fileName = g_pFullFileSystem->FindNext( findHandle );
-    }
-
-    qsort( pChapters, chapterIndex, sizeof( chapter_t ), &ChapterSortFunc );
+	KeyValues* pChapterFile = new KeyValues("ChapterList");
+	if ( pChapterFile && pChapterFile->LoadFromFile(g_pFullFileSystem, "scripts/chapters.kv") )
+	{
+		for (KeyValues* pData = pChapterFile->GetFirstSubKey(); pData != NULL; pData = pData->GetNextKey())
+		{
+			if (chapterIndex < MAX_CHAPTERS)
+				++chapterIndex;
+			else {
+				Warning("[GamepadUI] Chapter index greater than MAX_CHAPTERS ({})!\nNot all chapters will be displayed!", MAX_CHAPTERS);
+				break;
+			}
+		}
+		pChapterFile->deleteThis();
+	}
     return chapterIndex;
 }
 /* End from GameUI */
@@ -230,49 +217,45 @@ GamepadUINewGamePanel::GamepadUINewGamePanel( vgui::Panel *pParent, const char* 
 
     Activate();
 
-    chapter_t chapters[MAX_CHAPTERS];
-    int nChapterCount = FindChapters( chapters );
+	const char* pGameDir = COM_GetModDirectory();
 
-    for ( int i = 0; i < nChapterCount; i++ )
-    {
-        const char *fileName = chapters[i].filename;
-        char chapterID[32] = { 0 };
-        sscanf( fileName, "chapter%s", chapterID );
-        // strip the extension
-        char *ext = V_stristr( chapterID, ".cfg" );
-        if ( ext )
-        {
-            *ext = 0;
-        }
-        const char* pGameDir = COM_GetModDirectory();
+	int chapterIndex = 1;
+	KeyValues* pChapterFile = new KeyValues("ChapterList");
+	if (pChapterFile && pChapterFile->LoadFromFile(g_pFullFileSystem, "scripts/chapters.kv"))
+	{
+		for (KeyValues* pData = pChapterFile->GetFirstSubKey(); pData != NULL; pData = pData->GetNextKey())
+		{
+			if (chapterIndex >= MAX_CHAPTERS) {
+				Warning("[GamepadUI] Chapter index greater than MAX_CHAPTERS ({})!\nNot all chapters will be displayed!", MAX_CHAPTERS);
+				break;
+			}
 
-        char chapterName[64];
-        Q_snprintf( chapterName, sizeof( chapterName ), "#%s_Chapter%s_Title", pGameDir, chapterID );
+			char chapterName[64];
+			Q_snprintf(chapterName, sizeof(chapterName), "#%s_Chapter%d_Title", pGameDir, chapterIndex);
 
-        char command[32];
-        Q_snprintf( command, sizeof( command ), "chapter %d", i );
+			char command[64];
+			Q_snprintf(command, sizeof(command), "map %s", pData->GetString("map"));
 
-        wchar_t text[32];
-        wchar_t num[32];
-        wchar_t* chapter = g_pVGuiLocalize->Find( "#GameUI_Chapter" );
-        g_pVGuiLocalize->ConvertANSIToUnicode( chapterID, num, sizeof( num ) );
-        _snwprintf( text, ARRAYSIZE( text ), L"%ls %ls", chapter ? chapter : L"CHAPTER", num );
+			wchar_t text[32];
+			char num[32];
+			Q_snprintf(num, sizeof(num), "%d", chapterIndex);
+			wchar_t* chapter = g_pVGuiLocalize->Find("#GameUI_Chapter");
+			_snwprintf(text, ARRAYSIZE(text), L"%ls %ls", chapter ? chapter : L"CHAPTER", num);
 
-        GamepadUIString strChapterName( chapterName );
+			GamepadUIString strChapterName(chapterName);
+			GamepadUIChapterButton *pChapterButton = new GamepadUIChapterButton(
+				this, this,
+				GAMEPADUI_CHAPTER_SCHEME, command,
+				strChapterName.String(), text, pData->GetString("image"));
+			pChapterButton->SetEnabled(chapterIndex < GetUnlockedChapters());
+			pChapterButton->SetPriority(chapterIndex);
+			pChapterButton->SetForwardToParent(true);
 
-        char chapterImage[64];
-        Q_snprintf( chapterImage, sizeof( chapterImage ), "gamepadui/chapter%s.vmt", chapterID );
-        GamepadUIChapterButton *pChapterButton = new GamepadUIChapterButton(
-            this, this,
-            GAMEPADUI_CHAPTER_SCHEME, command,
-            strChapterName.String(), text, chapterImage);
-        pChapterButton->SetEnabled( i < GetUnlockedChapters() );
-        pChapterButton->SetPriority( i );
-        pChapterButton->SetForwardToParent( true );
-
-        m_pChapterButtons.AddToTail( pChapterButton );
-        m_Chapters.AddToTail( chapters[i] );
-    }
+			m_pChapterButtons.AddToTail(pChapterButton);
+			++chapterIndex;
+		}
+		pChapterFile->deleteThis();
+	}
 
     if ( m_pChapterButtons.Count() > 0 )
         m_pChapterButtons[0]->NavigateTo();
@@ -380,11 +363,9 @@ void GamepadUINewGamePanel::OnCommand( char const* pCommand )
     {
         GamepadUI::GetInstance().GetEngineClient()->ClientCmd_Unrestricted( "gamepadui_openbonusmapsdialog\n" );
     }
-    else if ( StringHasPrefixCaseSensitive( pCommand, "chapter " ) )
+    else if ( StringHasPrefixCaseSensitive( pCommand, "map " ) )
     {
-        const char* pszEngineCommand = pCommand + 8;
-        if ( *pszEngineCommand )
-            StartGame( atoi( pszEngineCommand ) );
+		StartGame(pCommand);
 
         Close();
     }
@@ -404,11 +385,11 @@ struct MapCommand_t
     char szCommand[512];
 };
 
-void GamepadUINewGamePanel::StartGame( int nChapter )
+void GamepadUINewGamePanel::StartGame( char const* pCommand )
 {
     MapCommand_t cmd;
     cmd.szCommand[0] = 0;
-    Q_snprintf( cmd.szCommand, sizeof( cmd.szCommand ), "disconnect\ndeathmatch 0\nprogress_enable\nexec %s\n", m_Chapters[nChapter].filename );
+    Q_snprintf( cmd.szCommand, sizeof( cmd.szCommand ), "disconnect\ndeathmatch 0\nprogress_enable\n%s\n", pCommand );
 
     // Set commentary
     ConVarRef commentary( "commentary" );
