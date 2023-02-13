@@ -70,7 +70,7 @@ ConVar mapbase_version_client( "mapbase_version_client", MAPBASE_VERSION, FCVAR_
 // This is from the vgui_controls library
 extern vgui::HScheme g_iCustomClientSchemeOverride;
 
-bool g_bUsingCustomHudAnimations = false;
+//bool g_bUsingCustomHudAnimations = false;
 bool g_bUsingCustomHudLayout = false;
 #endif
 
@@ -298,7 +298,7 @@ public:
 		}
 		m_CloseCaptionFileNames.RemoveAll();
 
-		if (g_iCustomClientSchemeOverride != 0 || g_bUsingCustomHudAnimations || g_bUsingCustomHudLayout)
+		if (g_iCustomClientSchemeOverride != 0 /*|| g_bUsingCustomHudAnimations*/ || g_bUsingCustomHudLayout)
 		{
 			CGMsg( 1, CON_GROUP_MAPBASE_MISC, "Mapbase: Reloading client mode and viewport scheme\n" );
 
@@ -306,7 +306,7 @@ public:
 			// That may or may not be sustainable if there's a ton of custom schemes loaded at once
 			g_iCustomClientSchemeOverride = 0;
 
-			g_bUsingCustomHudAnimations = false;
+			//g_bUsingCustomHudAnimations = false;
 			g_bUsingCustomHudLayout = false;
 
 			// Reload scheme
@@ -564,10 +564,10 @@ private:
 		CBaseViewport *pViewport = dynamic_cast<CBaseViewport *>(g_pClientMode->GetViewport());
 		if (pViewport)
 		{
-			g_bUsingCustomHudAnimations = true;
+			//g_bUsingCustomHudAnimations = true;
 			if (!pViewport->LoadCustomHudAnimations( pszFile ))
 			{
-				g_bUsingCustomHudAnimations = false;
+				//g_bUsingCustomHudAnimations = false;
 				CGWarning( 0, CON_GROUP_MAPBASE_MISC, "Custom HUD animations file \"%s\" failed to load\n", pszFile );
 				pViewport->ReloadHudAnimations();
 			}
