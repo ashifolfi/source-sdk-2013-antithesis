@@ -78,6 +78,10 @@ sp/src/game/server/Release_mod_episodic/
 sp/src/game/server/Release_mod_hl2/
 sp/src/*/Debug/
 sp/src/*/Release/
+sp/src/*/*/Debug/
+sp/src/*/*/Release/
+sp/src/materialsystem/*/Debug_dx9*
+sp/src/materialsystem/*/Release_dx9*
 sp/game/*.dll
 sp/game/*.pdb
 sp/game/*.exe
