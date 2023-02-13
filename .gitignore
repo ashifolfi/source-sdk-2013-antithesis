@@ -93,6 +93,9 @@ sp/game/bin/*
 sp/game/mod_*/bin/*.dll
 sp/game/mod_*/bin/*.pdb
 
+.vscode/
+
+
 .vs/
 
 # Build support files
