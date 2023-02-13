@@ -67,6 +67,7 @@ config.cfg
 
 # Build folders
 sp/src/.vs/
+sp/src/game/gamepadui/Debug_mod_episodic/
 sp/src/game/client/Debug_mod_episodic/
 sp/src/game/client/Debug_mod_hl2/
 sp/src/game/client/Release_mod_episodic/
@@ -88,6 +89,9 @@ sp/src/materialsystem/*.dll
 sp/src/materialsystem/*.pdb
 sp/src/vgui2/*.dll
 sp/src/vgui2/*.pdb
+sp/game/bin/*
+
+.vs/
 
 # Build support files
 sp/src/devtools/gcc9+support.o
