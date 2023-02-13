@@ -15,7 +15,7 @@ $Configuration
 	$Compiler
 	{
 		$AdditionalIncludeDirectories	".\hl2;.\hl2\elements;$SRCDIR\game\shared\hl2;$SRCDIR\game\shared\episodic;..\..\public;$BASE"
-		$PreprocessorDefinitions		"$BASE;HL2_CLIENT_DLL;HL2_EPISODIC"
+		$PreprocessorDefinitions		"$BASE;HL2_CLIENT_DLL;GAMEPADUI;HL2_EPISODIC"
 	}
 }
 
@@ -111,7 +111,7 @@ $Project "Client (Episodic)"
 			$File	"hl2\hud_damageindicator.cpp"
 			$File	"hl2\hud_flashlight.cpp"
 			$File	"hl2\hud_locator.cpp"
-			$File	"hl2\hud_health.cpp"
+			$File	"hl2\hud_healthbar.cpp"
 			$File	"hl2\hud_poisondamageindicator.cpp"			
 			$File	"hud_posture.cpp"
 			$File	"hl2\hud_quickinfo.cpp"
